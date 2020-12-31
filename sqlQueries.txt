@@ -1,0 +1,22 @@
+drop table person;
+drop table address;
+create table person(
+    id int primary key auto_increment,
+    first_name varchar(30),
+    last_name varchar(30)
+);
+
+create table address(
+    id int primary key auto_increment,
+    floor int,
+    street varchar(30),
+    locality varchar(30),
+    society varchar(30),
+    pin_code varchar(6),
+    city varchar(30),
+    state varchar(30),
+    foreign key (person_id)
+    references person(id)
+);
+
+insert into address(id, city, floor, house, locality, pin_code, society, state, street, person_id) values(1001, 'Ludhiana', 2, 658, 'Anandvihar', 123456, 'Phullanwall', 'Punjab', '11-b', 1001);
