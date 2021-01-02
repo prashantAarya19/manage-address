@@ -28,7 +28,7 @@ public class PersonController {
 
     @GetMapping("/operations")
     public ModelAndView operations() {
-        return new ModelAndView("/delete_address");
+        return new ModelAndView("/operations");
     }
 
     @GetMapping("/get-all")

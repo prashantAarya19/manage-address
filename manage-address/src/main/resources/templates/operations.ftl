@@ -11,7 +11,7 @@
 
 <body>
 <div class="header">
-    <img src="/images/htdslogo.svg" alt="">
+    <img src="/images/logoFire.png" alt="">
 </div>
 <div class="pageDesc">
     <div class="container">

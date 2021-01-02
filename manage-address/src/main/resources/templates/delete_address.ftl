@@ -48,7 +48,7 @@
     </div>
 </div>
 
-<div class="footer" style = "margin-top: 310px">
+<div class="footer">
     <a href="#">Terms & Conditions</a>
     <a href="#">Privacy Policy</a>
     <a href="#">Cookie Policy</a>
