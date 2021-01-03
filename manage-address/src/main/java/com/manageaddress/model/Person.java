@@ -16,7 +16,6 @@ public class Person {
     private String lastName;
     
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "person")
-    @JsonIgnore
     private Address address;
 
     public Person() {

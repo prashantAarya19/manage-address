@@ -1,10 +1,12 @@
 package com.manageaddress.service.impl;
 
+import com.manageaddress.model.Address;
 import com.manageaddress.model.Person;
 import com.manageaddress.repository.PersonRepository;
 import com.manageaddress.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import java.util.List;
 
@@ -16,6 +18,13 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public boolean addPerson(Person person) {
+        Address address = person.getAddress();
+        address.setPerson(person);
+        person.setAddress(address);
+        Person save = personRepository.save(person);
+        if(!ObjectUtils.isEmpty(save)) {
+            return true;
+        }
         return false;
     }
 
@@ -38,4 +47,5 @@ public class PersonServiceImpl implements PersonService {
     public List<Person> getAllPerson() {
         return personRepository.findAll();
     }
+
 }

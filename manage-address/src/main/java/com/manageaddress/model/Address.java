@@ -1,5 +1,7 @@
 package com.manageaddress.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -17,8 +19,9 @@ public class Address {
     private String city;
     private String state;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "person_id")
+    @JsonIgnore
     private Person person;
 
     public Address() {
