@@ -77,5 +77,5 @@ function showDiv(divId, element)
   document.getElementById(coupon).style.display = "block";
   evt.currentTarget.className += " active";
   }
-  document.getElementById("defaultOpen").click();
+  // document.getElementById("defaultOpen").click();
 

@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M coupon</title>
+    <title>Manage Address</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
     <link href="/css/manage_address.css" rel="stylesheet">
 </head>
 
 <body>
 <div class="header">
-    <img src="/images/htdslogo.svg" alt="">
+    <img src="/images/logoFire.png" alt="">
 </div>
 <div class="pageDesc">
     <div class="container">
@@ -21,6 +21,9 @@
 
         <div class="shadowBox clearfix">
             <div class="addressSec active" id="saved">
+                <div class="address clearfix" >
+                    <span class="fl mt15">Find Address</span>
+                </div>
                 <!-- Manage address start -->
                 <div class="formGroup clearfix">
                     <div class="wid50">
@@ -39,6 +42,10 @@
                             <div class="errorBox">Enter valid input</div>
                         </div>
                     </div>
+                </div>
+                <div class="btnHolder">
+                    <input type="button" value="Save"  class="btn">
+                    <input type="button" value="Cancel"  class="btn2">
                 </div>
                 <!-- Manage Address End -->
             </div>

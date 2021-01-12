@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface PersonService {
 
-    public boolean addPerson(Person person);
+    boolean addPerson(Person person);
 
-    public boolean updatePerson(Person person);
+    boolean updatePerson(Person person);
 
-    public boolean deletePerson(Person person);
+    boolean deletePerson(String attribute, String person);
 
-    public Person getOnePerson(Person person);
+    Person getOnePerson(String attribute, String value);
 
-    public List<Person> getAllPerson();
+    List<Person> getAllPerson();
 }

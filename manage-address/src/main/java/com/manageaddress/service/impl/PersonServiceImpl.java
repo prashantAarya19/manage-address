@@ -1,6 +1,5 @@
 package com.manageaddress.service.impl;
 
-import com.manageaddress.model.Address;
 import com.manageaddress.model.Person;
 import com.manageaddress.repository.PersonRepository;
 import com.manageaddress.service.PersonService;
@@ -18,11 +17,9 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public boolean addPerson(Person person) {
-        Address address = person.getAddress();
-        address.setPerson(person);
-        person.setAddress(address);
+        person.setAddressId(person);
         Person save = personRepository.save(person);
-        if(!ObjectUtils.isEmpty(save)) {
+        if (!ObjectUtils.isEmpty(save)) {
             return true;
         }
         return false;
@@ -30,17 +27,56 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public boolean updatePerson(Person person) {
-        return false;
+        person.setAddressId(person);
+        try {
+            person = personRepository.save(person);
+        } catch (IllegalArgumentException ex) {
+            ex.printStackTrace();
+        }
+        if (ObjectUtils.isEmpty(person)) {
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public boolean deletePerson(Person person) {
-        return false;
+    public boolean deletePerson(String attribute, String value) {
+        Person person;
+        switch (attribute) {
+            case "firstName":
+                person = personRepository.findByFirstName(value);
+                break;
+            case "lastName":
+                person = personRepository.findByLastName(value);
+                break;
+            default:
+                throw new IllegalArgumentException("INVALID_INPUT");
+        }
+
+        Long personId = person.getId();
+        try {
+            personRepository.deleteById(personId);
+            return true;
+        } catch (IllegalArgumentException ex) {
+            ex.printStackTrace();
+            return false;
+        }
     }
 
     @Override
-    public Person getOnePerson(Person person) {
-        return null;
+    public Person getOnePerson(String attribute, String value) {
+        Person person = null;
+        switch (attribute) {
+            case "firstName":
+                person = personRepository.findByFirstName(value.toLowerCase());
+                break;
+            case "lastName":
+                person = personRepository.findByLastName(value.toLowerCase());
+                break;
+            default:
+                throw new IllegalArgumentException("INVALID_INPUT");
+        }
+        return person;
     }
 
     @Override

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M coupon</title>
+    <title>Manage Address</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
     <link href="/css/manage_address.css" rel="stylesheet">
 </head>
@@ -20,45 +20,12 @@
 
 
         <div class="shadowBox clearfix">
-            <div class="addressSec active" id="saved">
-                <!-- Manage address start -->
-                <div class="formGroup clearfix" id="">
-                    <div class="wid100">
-                        <div class="value">
-                            <input type="button" value="Add" class="btn">
-                            <div class="errorBox">Enter valid input</div>
-                        </div>
-                    </div>
-                </div>
+            <div class="addressSec active" id="saved"> <!-- Generic part -->
 
-                <div class="formGroup clearfix" id="">
-                    <div class="wid100">
-                        <div class="value">
-                            <input type="button" value="Update" class="btn">
-                            <div class="errorBox">Enter valid input</div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="formGroup clearfix" id="">
-                    <div class="wid100">
-                        <div class="value">
-                            <input type="button" value="Find" class="btn">
-                            <div class="errorBox">Enter valid input</div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="formGroup clearfix" id="">
-                    <div class="wid100">
-                        <div class="value">
-                            <input type="button" value="Remove" class="btn">
-                            <div class="errorBox">Enter valid input</div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Manage Address End -->
-            </div>
+            </div> <!-- Generic part -->
+
         </div>
 
 
@@ -72,6 +39,9 @@
 </div>
 
 <script src="/js/custom.js"></script>
+<script src="/js/static.js"></script>
+<script src="/js/jquery-3.5.1.min.js"></script>
+<script src="/js/manage-view.js"></script>
 </body>
 
 </html>

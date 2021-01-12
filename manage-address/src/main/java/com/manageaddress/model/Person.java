@@ -52,4 +52,10 @@ public class Person {
     public void setAddress(Address address) {
         this.address = address;
     }
+
+    public void setAddressId(Person person) {
+        Address address = person.getAddress();
+        address.setPerson(person);
+        person.setAddress(address);
+    }
 }
