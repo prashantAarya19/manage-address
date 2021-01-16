@@ -8,6 +8,7 @@ $(document).ready(() => {
     $(document).on('click','#submit', () => submitForm());
     $(document).on('click','#findPerson', () => FindPerson());
     $(document).on('click','#update_person', () => updatePerson());
+    $(document).on('click','#removePerson', () => removePerson());
 });
 
 function toggleView(contentToShow) {
@@ -53,20 +54,22 @@ function FindPerson() {
        $.ajax({
            url : path,
            method : 'GET',
+           dataType : 'json',
            success : function(response) {
-               if(response) {
+               if(response.success) {
                    toggleView(updateAddress);
-                   $('#name').val(response.firstName+' '+response.lastName);
-                   $('#house').val(response.address.house)
-                   $('#floor').val(response.address.floor)
-                   $('#street').val(response.address.street)
-                   $('#locality').val(response.address.locality)
-                   $('#society').val(response.address.society)
-                   $('#pincode').val(response.address.pinCode)
-                   $('#city').val(response.address.city)
-                   $('#state').val(response.address.state)
+                   $('#name').val(response.data.firstName+' '+response.data.lastName);
+                   $('#house').val(response.data.address.house)
+                   $('#floor').val(response.data.address.floor)
+                   $('#street').val(response.data.address.street)
+                   $('#locality').val(response.data.address.locality)
+                   $('#society').val(response.data.address.society)
+                   $('#pincode').val(response.data.address.pinCode)
+                   $('#city').val(response.data.address.city)
+                   $('#state').val(response.data.address.state)
                } else {
-                   alert('Something went wrong!');
+                   alert('Person not available!');
+                   toggleView(operation);
                }
            },
            error: function (jqXHR, textStatus, errorThrown) {
@@ -96,7 +99,26 @@ function updatePerson() {
            data : JSON.stringify(data),
            success : function(response) {
                if(response) {
-                   alert('Address saved successfully!');
+                   alert('Address updated successfully!');
+                   toggleView(operation);
+               } else {
+                   alert('Something went wrong!');
+               }
+           },
+           error: function (jqXHR, textStatus, errorThrown) {
+               alert('Something went wrong!');
+           }
+       });
+}
+
+function removePerson() {
+    let path = '/delete-one?attribute='+$( ".select option:selected").val()+'&value='+$( "#removeVal").val();
+       $.ajax({
+           url : path,
+           method : 'GET',
+           success : function(response) {
+               if(response) {
+                   alert('Person removed successfully!');
                    toggleView(operation);
                } else {
                    alert('Something went wrong!');

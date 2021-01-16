@@ -1,10 +1,12 @@
 package com.manageaddress.controller;
 
+import com.manageaddress.ApiResponse;
 import com.manageaddress.ManageAddressUtil;
 import com.manageaddress.model.Address;
 import com.manageaddress.model.Person;
 import com.manageaddress.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -63,12 +65,16 @@ public class PersonController {
     }
 
     @GetMapping("/find-one")
-    public Person findOnePerson(@RequestParam String attribute, @RequestParam String value) {
+    public ApiResponse findOnePerson(@RequestParam String attribute, @RequestParam String value) {
         Person person = personService.getOnePerson(attribute, value);
-        session.setAttribute("person_id", person.getId());
-        Address address = person.getAddress();
-        session.setAttribute("address_id", address.getId());
-        return person;
+        if(ObjectUtils.isEmpty(person)) {
+            return ApiResponse.failResponse(null);
+        } else {
+            session.setAttribute("person_id", person.getId());
+            Address address = person.getAddress();
+            session.setAttribute("address_id", address.getId());
+            return ApiResponse.successResponse(person);
+        }
     }
 
 }

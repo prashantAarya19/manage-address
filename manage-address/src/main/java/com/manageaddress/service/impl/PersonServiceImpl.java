@@ -44,10 +44,10 @@ public class PersonServiceImpl implements PersonService {
         Person person;
         switch (attribute) {
             case "firstName":
-                person = personRepository.findByFirstName(value);
+                person = personRepository.findByFirstName(value.toLowerCase());
                 break;
             case "lastName":
-                person = personRepository.findByLastName(value);
+                person = personRepository.findByLastName(value.toLowerCase());
                 break;
             default:
                 throw new IllegalArgumentException("INVALID_INPUT");
