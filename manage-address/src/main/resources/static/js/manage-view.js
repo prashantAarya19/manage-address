@@ -130,6 +130,15 @@ function removePerson() {
        });
 }
 
+function sliceInput(elm) {
+    let value = $(elm).val();
+    let maxLen = $(elm).prop('maxlength');
+    if(value.length > maxLen) {
+        $(elm).focusout();
+        $(elm).val(value.slice(0, maxLen));
+    }
+}
+
 
 
 
