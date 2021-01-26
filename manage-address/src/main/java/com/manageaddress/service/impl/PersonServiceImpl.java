@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -39,18 +40,16 @@ public class PersonServiceImpl implements PersonService {
         return true;
     }
 
+    @Transactional
     @Override
     public boolean deletePerson(String attribute, String value) {
         Person person;
         switch (attribute) {
-            case "firstName":
-                person = personRepository.findByFirstName(value.toLowerCase());
-                break;
-            case "lastName":
-                person = personRepository.findByLastName(value.toLowerCase());
+            case "email":
+                person = personRepository.findByEmail(value.toLowerCase());
                 break;
             default:
-                throw new IllegalArgumentException("INVALID_INPUT");
+                throw new IllegalArgumentException("Either argument not present or invalid!");
         }
 
         Long personId = person.getId();

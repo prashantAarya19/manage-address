@@ -3,6 +3,7 @@ package com.manageaddress;
 import com.manageaddress.model.Address;
 import com.manageaddress.model.Person;
 
+import java.util.Locale;
 import java.util.Map;
 
 public class ManageAddressUtil {
@@ -10,7 +11,7 @@ public class ManageAddressUtil {
     public static Person getPerson(Map<String, String> data) {
         String lastName = "";
         Address address = new Address();
-        address.setHouse(Integer.valueOf(data.get("house")));
+        address.setHouse(data.get("house").toLowerCase());
         address.setFloor(Integer.valueOf(data.get("floor")));
         address.setLocality(data.get("locality").toLowerCase());
         address.setSociety(data.get("society").toLowerCase());

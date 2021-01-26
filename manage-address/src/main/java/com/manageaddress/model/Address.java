@@ -9,7 +9,7 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Integer house;
+    private String house;
     private Integer floor;
     private String street;
     private String locality;
@@ -35,11 +35,11 @@ public class Address {
         this.id = id;
     }
 
-    public Integer getHouse() {
+    public String getHouse() {
         return house;
     }
 
-    public void setHouse(Integer house) {
+    public void setHouse(String house) {
         this.house = house;
     }
 

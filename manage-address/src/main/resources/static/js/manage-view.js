@@ -17,6 +17,10 @@ function toggleView(contentToShow) {
 }
 
 function submitForm() {
+    if(isEmpty()) {
+        alert('Every field is mandatory');
+        return;
+    }
     let data = [];
        data = {
            name : $('#name').val(),
@@ -79,6 +83,10 @@ function FindPerson() {
 }
 
 function updatePerson() {
+    if(isEmpty()) {
+            alert('Every field is mandatory');
+            return;
+    }
     let data = [];
        data = {
            name : $('#name').val(),
@@ -115,7 +123,7 @@ function removePerson() {
     let path = '/delete-one?attribute='+$( ".select option:selected").val()+'&value='+$( "#removeVal").val();
        $.ajax({
            url : path,
-           method : 'GET',
+           method : 'DELETE',
            success : function(response) {
                if(response) {
                    alert('Person removed successfully!');
@@ -134,10 +142,25 @@ function sliceInput(elm) {
     let value = $(elm).val();
     let maxLen = $(elm).prop('maxlength');
     if(value.length > maxLen) {
-        $(elm).focusout();
         $(elm).val(value.slice(0, maxLen));
     }
 }
+
+function isEmpty() {
+    if($('#name').val() == '' ||
+    $('#email').val() == '' ||
+    $('#house').val()== '' ||
+    $('#floor').val()== '' ||
+    $('#street').val()== '' ||
+    $('#locality').val()== '' ||
+    $('#society').val()== '' ||
+    $('#pincode').val()== '' ||
+    $('#city').val()== '' ||
+    $('#state').val()== '' ||) {
+        return true;
+    }
+    return false;
+ }
 
 
 
