@@ -45,7 +45,7 @@ public class PersonController {
         return personService.addPerson(ManageAddressUtil.getPerson(data));
     }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     public Boolean updatePerson(@RequestBody Map<String, String> data) {
         Long personId = Optional.ofNullable(session.getAttribute("person_id"))
                 .map(Long.class::cast)
@@ -59,7 +59,7 @@ public class PersonController {
         return personService.updatePerson(person);
     }
 
-    @GetMapping("/delete-one")
+    @DeleteMapping("/delete-one")
     public Boolean deleteOnePerson(@RequestParam String attribute, @RequestParam String value) {
         return personService.deletePerson(attribute, value);
     }
@@ -67,7 +67,7 @@ public class PersonController {
     @GetMapping("/find-one")
     public ApiResponse findOnePerson(@RequestParam String attribute, @RequestParam String value) {
         Person person = personService.getOnePerson(attribute, value);
-        if(ObjectUtils.isEmpty(person)) {
+        if (ObjectUtils.isEmpty(person)) {
             return ApiResponse.failResponse(null);
         } else {
             session.setAttribute("person_id", person.getId());
@@ -77,4 +77,8 @@ public class PersonController {
         }
     }
 
+    @GetMapping("/test")
+    public ModelAndView test() {
+        return new ModelAndView("/add_address");
+    }
 }

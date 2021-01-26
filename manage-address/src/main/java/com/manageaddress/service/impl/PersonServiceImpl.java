@@ -64,18 +64,12 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Person getOnePerson(String attribute, String value) {
-        Person person = null;
         switch (attribute) {
-            case "firstName":
-                person = personRepository.findByFirstName(value.toLowerCase());
-                break;
-            case "lastName":
-                person = personRepository.findByLastName(value.toLowerCase());
-                break;
+            case "email":
+                return personRepository.findByEmail(value.toLowerCase());
             default:
-                throw new IllegalArgumentException("INVALID_INPUT");
+                throw new IllegalArgumentException("Either argument not present or invalid!");
         }
-        return person;
     }
 
     @Override

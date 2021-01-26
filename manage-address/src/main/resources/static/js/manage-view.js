@@ -24,6 +24,7 @@ function submitForm() {
     let data = [];
        data = {
            name : $('#name').val(),
+           email : $('#email').val(),
            house : $('#house').val(),
            floor : $('#floor').val(),
            street : $('#street').val(),
@@ -62,7 +63,8 @@ function FindPerson() {
            success : function(response) {
                if(response.success) {
                    toggleView(updateAddress);
-                   $('#name').val(response.data.firstName+' '+response.data.lastName);
+                   $('#name').val(response.data.name);
+                   $('#email').val(response.data.email);
                    $('#house').val(response.data.address.house)
                    $('#floor').val(response.data.address.floor)
                    $('#street').val(response.data.address.street)
@@ -90,6 +92,7 @@ function updatePerson() {
     let data = [];
        data = {
            name : $('#name').val(),
+           email : $('#email').val(),
            house : $('#house').val(),
            floor : $('#floor').val(),
            street : $('#street').val(),
@@ -101,7 +104,7 @@ function updatePerson() {
        };
        $.ajax({
            url : '/update',
-           method : 'POST',
+           method : 'PUT',
            contentType : 'application/json',
            dataType : 'json',
            data : JSON.stringify(data),

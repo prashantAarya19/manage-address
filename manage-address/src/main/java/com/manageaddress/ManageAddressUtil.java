@@ -9,7 +9,6 @@ import java.util.Map;
 public class ManageAddressUtil {
 
     public static Person getPerson(Map<String, String> data) {
-        String lastName = "";
         Address address = new Address();
         address.setHouse(data.get("house").toLowerCase());
         address.setFloor(Integer.valueOf(data.get("floor")));
@@ -19,14 +18,9 @@ public class ManageAddressUtil {
         address.setCity(data.get("city").toLowerCase());
         address.setState(data.get("state").toLowerCase());
         address.setStreet(data.get("street").toLowerCase());
-
-        String[] name = data.get("name").split(" ");
         Person person = new Person();
-        person.setFirstName(name[0]);
-        for(int i = 1; i < name.length; i++){
-            lastName += name[i].toLowerCase()+" ";
-        }
-        person.setLastName(lastName);
+        person.setEmail(data.get("email").toLowerCase());
+        person.setName(data.get("name").toLowerCase());
         person.setAddress(address);
         return person;
     }

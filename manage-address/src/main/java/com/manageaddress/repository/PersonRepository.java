@@ -7,8 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 import javax.transaction.Transactional;
 
 public interface PersonRepository extends JpaRepository<Person, Long> {
+    @Query(value = "select * from person p inner join address a on a.person_id = p.id where p.email = ?", nativeQuery = true)
+    Person findByEmail(String email);
 
-    @Query(value = "select top 1 * from person p inner join address a on a.person_id = p.id where p.first_name = ?", nativeQuery = true)
-    Person findByFirstName(String firstName);
-    Person findByLastName(String lastName);
+    @Query(value = "delete from person where email = ?", nativeQuery = true)
+    Person deleteByEmail(String email);
 }
